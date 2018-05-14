@@ -11,7 +11,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo"/>
             <Hello title={"Hello from props"}/>
           </header>
-          <p> Ready for begginer</p>
+          <p> Ready for start</p>
         </div>
     );
   }
