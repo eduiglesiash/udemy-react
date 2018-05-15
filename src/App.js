@@ -17,36 +17,15 @@ class Hello extends Component {
   }
 }
 
-class Text extends Component {
-  render() {
-    const {
-      arrayOfNumbers,
-      objectWithInfo,
-      text,
-      multiply,
-      title
-
-    } = this.props;
-    const mappedNumbers = arrayOfNumbers.map(multiply);
-    return (
-        <div>
-          {title}
-          <p>{'Prop Text: ' + text}</p>
-          <p>{'Prop arrayOfNumbers: ' + mappedNumbers.join(', ')}</p>
-          <p>{'Prop objectWithInfo: ' + objectWithInfo.key}</p>
-        </div>
-    )
-  }
-}
-
 class App extends Component {
   render() {
     return (
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo"/>
-            <Hello title={"Ready for section??"}/>
+            <Hello title={"Ready for section8"}/>
           </header>
+          <h1>Lifecycle</h1>
         </div>
     );
   }
