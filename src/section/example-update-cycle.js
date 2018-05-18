@@ -1,4 +1,4 @@
-import React, {Component, PureComponent} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
 
@@ -10,14 +10,12 @@ const ANIMAL_IMAGES = {
 
 const ANIMALS = Object.keys(ANIMAL_IMAGES);
 
-class AnimalImages extends PureComponent{
-  // Lo podemos usar cuando nuestras STATES y PROPS son sencillas.
-  // Lo tenemos que usar siempre que podamos.
+class AnimalImages extends Component {
 
   state = {src: ANIMAL_IMAGES[this.props.animal]}
 
 
-  componentWillReceiveProps (nextProps){
+  componentWillReceiveProps(nextProps) {
     // nextProps pueden ser las mismas props que tenemos
     // pero entrará igualmente a este método
     // Nuevas props no quiere decir que sean distintas
@@ -30,14 +28,42 @@ class AnimalImages extends PureComponent{
     this.setState({src: ANIMAL_IMAGES[nextProps.animal]})
   }
 
+  shouldComponentUpdate(nextProps) {
+    console.clear();
+    console.log('2. shouldComponentUpdate');
+    console.log('before: ', this.props.animal);
+    console.log('after: ', nextProps.animal);
+    // Hay que devolver un booleano
+    // Si este método nos exsite, se devulev true por defecto.
+    return this.props.animal !== nextProps.animal
+  }
 
+  componentWillUpdate(nextProps, nextState) {
+    console.log('3. componentWillUpdate: ', nextProps, nextState)
+    const img = document.querySelector('#animals-img')
+    console.log('from img element', {alt: img.alt})
 
-  render(){
-    console.log('1. al Montar / 3. al actualizar -> Render')
-    return(
+    // web animations api
+    img.animate(
+        [{
+          filter: 'blur(0px)'
+        }, {
+          filter: 'blur(2px)'
+        }], {
+          duration: 500,
+          easing: 'ease'
+        }
+    )
+
+  }
+
+  render() {
+    console.log('1. al Montar / 3. al actualizar -> Render');
+    return (
         <div>
           <p> Selected: {this.props.animal}</p>
           <img
+              id={"animals-img"}
               src={this.state.src}
               alt={this.props.animal}
               width='250'
@@ -56,20 +82,20 @@ AnimalImages.defaultProps = {
 }
 
 
-
-class ExampleUpdateCycle extends Component{
+class ExampleUpdateCycle extends Component {
   state = {animal: 'panda'}
   _renderAnimalButton = (animal) => {
     return (
         <button
             //disabled={animal === this.state.animal}
             key={animal}
-            onClick={()=> this.setState({animal: animal})}
+            onClick={() => this.setState({animal: animal})}
         > {animal}
         </button>
     )
   }
-  render(){
+
+  render() {
     return (
         <div>
           <h2>Component ExampleUpdateCycle Ready</h2>
