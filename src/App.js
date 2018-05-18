@@ -17,23 +17,40 @@ class Hello extends Component {
   }
 }
 
-class Text extends Component {
+class Button extends Component {
   render() {
-    const {
-      arrayOfNumbers,
-      objectWithInfo,
-      text,
-      multiply,
-      title
-
-    } = this.props;
-    const mappedNumbers = arrayOfNumbers.map(multiply);
     return (
+        <button
+            style={{
+              borderColor: this.props.borderColor,
+              display: 'block'
+            }}
+        > {this.props.label}
+        </button>
+    )
+  }
+}
+Button.defaultProps = {
+  borderColor: '#09f'
+}
+
+class ButtonDanger extends Component {
+  render(){
+    return <Button
+        borderColor={"red"}
+        label={this.props.label}
+    />
+  }
+}
+
+class ButtonWithLegend extends Component {
+  render(){
+    return(
         <div>
-          {title}
-          <p>{'Prop Text: ' + text}</p>
-          <p>{'Prop arrayOfNumbers: ' + mappedNumbers.join(', ')}</p>
-          <p>{'Prop objectWithInfo: ' + objectWithInfo.key}</p>
+          <Button
+          label={this.props.label}
+          borderColor={this.props.borderColor}/>
+          <small>{this.props.legend}</small>
         </div>
     )
   }
@@ -45,8 +62,19 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo"/>
-            <Hello title={"Ready for section??"}/>
+            <Hello title={"Ready for section 9"}/>
           </header>
+          <h2>Composición vs Herencia</h2>
+          <Button label='Click Here Composicion'/>
+          <ButtonDanger label='Warning Composicion'/>
+
+          <br />
+
+          <ButtonWithLegend
+              label={'Button Whith Legend Composicion'}
+              legend={'Clicka el boton para hacer algo'}
+
+          />
         </div>
     );
   }
