@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 
@@ -10,7 +10,9 @@ const ANIMAL_IMAGES = {
 
 const ANIMALS = Object.keys(ANIMAL_IMAGES);
 
-class AnimalImages extends Component{
+class AnimalImages extends PureComponent{
+  // Lo podemos usar cuando nuestras STATES y PROPS son sencillas.
+  // Lo tenemos que usar siempre que podamos.
 
   state = {src: ANIMAL_IMAGES[this.props.animal]}
 
@@ -28,14 +30,8 @@ class AnimalImages extends Component{
     this.setState({src: ANIMAL_IMAGES[nextProps.animal]})
   }
 
-  shouldComponentUpdate(nextProps) {
-    console.log('2. shouldComponentUpdate');
-    console.log('before: ', this.props.animal);
-    console.log('after: ', nextProps.animal);
-    // Hay que devolver un booleano
-    // Si este método nos exsite, se devulev true por defecto.
-    return this.props.animal !== nextProps.animal
-  }
+
+
   render(){
     console.log('1. al Montar / 3. al actualizar -> Render')
     return(
