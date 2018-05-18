@@ -6,13 +6,13 @@ const ANIMAL_IMAGES = {
   panda: 'https://goo.gl/oNbtoq',
   cat: 'https://goo.gl/PoQQXb',
   dolphin: 'https://goo.gl/BbiKCd'
-}
+};
 
 const ANIMALS = Object.keys(ANIMAL_IMAGES);
 
 class AnimalImages extends Component {
 
-  state = {src: ANIMAL_IMAGES[this.props.animal]}
+  state = {src: ANIMAL_IMAGES[this.props.animal]};
 
 
   componentWillReceiveProps(nextProps) {
@@ -24,7 +24,7 @@ class AnimalImages extends Component {
     // aunque sean iguales a las actuales.
 
     console.log('1. ComponentWillReceiveProps');
-    console.log('nextProps: ', nextProps)
+    console.log('nextProps: ', nextProps);
     this.setState({src: ANIMAL_IMAGES[nextProps.animal]})
   }
 
@@ -39,9 +39,9 @@ class AnimalImages extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log('3. componentWillUpdate: ', nextProps, nextState)
-    const img = document.querySelector('#animals-img')
-    console.log('from img element', {alt: img.alt})
+    console.log('3. componentWillUpdate: ', nextProps, nextState);
+    const img = document.querySelector('#animals-img');
+    console.log('from img element', {alt: img.alt});
 
     // web animations api
     img.animate(
@@ -58,8 +58,8 @@ class AnimalImages extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('4. componentDidUpdate')
-    const img = document.querySelector('#animals-img')
+    console.log('4. componentDidUpdate');
+    const img = document.querySelector('#animals-img');
     // Web animation api
     img.animate(
         [{
@@ -69,7 +69,7 @@ class AnimalImages extends Component {
         }], {
           duration: 1500,
           easing: 'ease'
-        })
+        });
 
     console.log('from img element', {alt: img.alt})
   }
@@ -96,11 +96,11 @@ AnimalImages.propTypes = {
 
 AnimalImages.defaultProps = {
   animal: 'panda'
-}
+};
 
 
 class ExampleUpdateCycle extends Component {
-  state = {animal: 'panda'}
+  state = {animal: 'panda'};
   _renderAnimalButton = (animal) => {
     return (
         <button
@@ -110,7 +110,7 @@ class ExampleUpdateCycle extends Component {
         > {animal}
         </button>
     )
-  }
+  };
 
   render() {
     return (
