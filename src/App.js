@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 // import LifeCycle from './section/lifecycle'
 // import FetchExample from './section/fetch-example'
 // import ExampleUpdateCycle from './section/example-update-cycle'
-import ComponentWillUnmount from './section/componentWillUnmount'
+// import ComponentWillUnmount from './section/componentWillUnmount'
+import ExampleComponentDidCatch from './section/exampleComponentDidCatch'
 
 import logo from './logo.svg';
 import './App.css';
@@ -33,8 +34,8 @@ class App extends Component {
           {/*<LifeCycle/>*/}
           {/*<FetchExample/>*/}
           {/*<ExampleUpdateCycle/>*/}
-          <ComponentWillUnmount />
-
+          {/*<ComponentWillUnmount/>*/}
+          <ExampleComponentDidCatch />
         </div>
     );
   }
